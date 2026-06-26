@@ -5,7 +5,6 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 438086566397.dkr.ecr.ap-south-1.amazonaws.com
-
       - REPOSITORY_URI=438086566397.dkr.ecr.ap-south-1.amazonaws.com/mywebsite
       - IMAGE_TAG=latest
 
@@ -18,8 +17,7 @@ phases:
     commands:
       - echo Pushing Docker image...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-
-      - printf '[{"name":"mywebsite","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"Web-Container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
   files:
